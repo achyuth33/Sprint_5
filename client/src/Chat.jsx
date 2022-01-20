@@ -1,17 +1,24 @@
 import React from "react";
 import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  useSubscription,
-  useMutation,
-  gql,
-} from "@apollo/client";
+  ApolloClient,    //manage both local and remote data with GraphQL ,
+  InMemoryCache,   //cache is an instance of InMemoryCache, which Apollo Client uses to cache query results after fetching them.
+  ApolloProvider,  //To connect Apollo Client to React, you will need to use the (ApolloProvider component),It wraps your React app and places the client on the context, which allows you to access it from anywhere in your component tree.
+  useSubscription, //In the majority of cases, your client should not use subscriptions to stay up to date with your backend.
+  useMutation,     //send updates to your GraphQL server with the useMutation hook.
+  gql,             //It is used for passing a query to server.
+} from "@apollo/client";  //This single package contains virtually everything you need to set up Apollo Client.
+
+//Import and initialize a WebSocketLink object in the same project file where you initialize ApolloClient
 import { WebSocketLink } from "@apollo/client/link/ws";
+
+//Shards React is a useful UI library that lets us add many components easily into our React app
 import { Container, Row, Col, FormInput, Button } from "shards-react";
 
+/*To execute subscriptions over WebSocket,
+ you can add a WebSocketLink to your link chain.
+This link requires the subscriptions-transport-ws library */
 const link = new WebSocketLink({
-  uri: `ws://localhost:4000/`,
+  uri: `ws://localhost:4000/`,      //address of the port needs to be connected..
   options: {
     reconnect: true,
   },
@@ -20,10 +27,11 @@ const link = new WebSocketLink({
 const client = new ApolloClient({
   link,
   uri: "http://localhost:4000/",
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache(),       //Helps to render the data for repeated quires.
 });
 
-const GET_MESSAGES = gql`
+//(gql)It is used for passing a query to server.
+const GET_MESSAGES = gql`         
   subscription {
     messages {
       id
@@ -45,6 +53,7 @@ const Messages = ({ user }) => {
     return null;
   }
 
+  //Here we Rendering the data by using map function
   return (
     <>
       {data.messages.map(({ id, user: messageUser, content }) => (

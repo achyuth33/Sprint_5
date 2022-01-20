@@ -1,4 +1,11 @@
-const { GraphQLServer, PubSub } = require("graphql-yoga");
+/*graphql-yoga is a fully-featured GraphQL Server 
+with focus on ease-of-use, performance, and great developer experience. 
+Additionally, it supports all GraphQL clients like Apollo.
+Now that you understand what GraphQL is, 
+you can learn to use it in your Nodejs applications in place of REST. */
+
+//PUBSUB is a public subscriber system for this graphQL
+const { GraphQLServer, PubSub } = require("graphql-yoga"); 
 
 const messages = [];
 
