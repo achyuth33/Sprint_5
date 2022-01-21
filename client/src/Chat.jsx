@@ -82,7 +82,7 @@ const Messages = ({ user }) => {
           )}
           <div
             style={{
-              background: user === messageUser ? "blue" : "#red",
+              background: user === messageUser ? "blue" : "red",
               color: user === messageUser ? "white" : "black",
               padding: "1em",
               borderRadius: "1em",
