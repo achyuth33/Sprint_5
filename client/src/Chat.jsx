@@ -98,7 +98,7 @@ const Messages = ({ user }) => {
 };
 
 const Chat = () => {
-  const [state, stateSet] = React.useState({
+  const [state, stateSet] = React.useState({   //here we initializing the state
     user: "Achyuth",
     content: "",
   });
@@ -111,8 +111,8 @@ const Chat = () => {
       });
     }
     stateSet({
-      ...state,
-      content: "",
+      ...state,             //unpacking  and updating the new data to state
+      content: "", 
     });
   };
   return (
@@ -125,7 +125,7 @@ const Chat = () => {
             value={state.user}
             onChange={(evt) =>
               stateSet({
-                ...state,
+                ...state, 
                 user: evt.target.value,
               })
             }
@@ -142,7 +142,7 @@ const Chat = () => {
               })
             }
             onKeyUp={(evt) => {
-              if (evt.keyCode === 13) {
+              if (evt.keyCode === 13) {    //key 13 keycode is for ENTER key
                 onSend();
               }
             }}
